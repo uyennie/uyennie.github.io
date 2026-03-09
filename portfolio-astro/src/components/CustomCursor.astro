@@ -23,7 +23,7 @@
     min-width: 18px;
     height: 18px;
     padding: 0 9px;
-    background: #39FF14;
+    background: #15FC00;
     border-radius: 9999px;
     transform: translateY(-50%);
     transform-origin: left center;
@@ -55,7 +55,7 @@
 
   .cursor.hovering .cursor-text {
     opacity: 1;
-    max-width: 120px;
+    max-width: 200px;
   }
 
   /* Hide on touch devices */
@@ -85,30 +85,14 @@
       cursor.style.opacity = '1';
     });
 
-    // Project card hover
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach((card) => {
-      card.addEventListener('mouseenter', () => {
-        cursor.classList.add('hovering');
-        if (cursorText) {
-          cursorText.textContent = 'VIEW PROJECT';
-        }
-      });
-
-      card.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hovering');
-      });
-    });
-
-    // Custom cursor text elements (like name hover)
+    // Custom cursor text elements (project cards and other hover elements)
     const cursorTextElements = document.querySelectorAll('[data-cursor-text]');
     
     cursorTextElements.forEach((el) => {
       el.addEventListener('mouseenter', () => {
         cursor.classList.add('hovering');
         if (cursorText) {
-          cursorText.textContent = el.getAttribute('data-cursor-text');
+          cursorText.textContent = el.getAttribute('data-cursor-text') || 'VIEW PROJECT';
         }
       });
 

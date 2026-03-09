@@ -4,52 +4,39 @@ import ProjectCard from '../components/ProjectCard.astro';
 
 const works = [
   {
-    title: "Content Overload",
+    title: "Non-Binary",
     company: "Personal",
     status: "2022",
-    image: "/images/content/content-1.gif",
-    href: "/work/content-overload",
-    description: "A microsite and immersive experience exploring information overload in social media spaces."
-  },
-  {
-    title: "Future Record",
-    company: "Personal",
-    status: "2022",
-    image: "/images/future-record/future-record-2.jpg",
-    href: "/work/future-record",
-    description: "Visualizing digital waste as 3D objects with size and mass."
-  },
-  {
-    title: "Deus Ex Machina",
-    company: "Personal",
-    status: "2022",
-    image: "/images/deus-ex-machina/deus-ex-1.jpg",
-    href: "/work/deus-ex-machina",
-    description: "A microsite reimagining relationships between reader, text, and author."
-  },
-  {
-    title: "Frost",
-    company: "Personal",
-    status: "2021",
-    image: "/images/frost/frost-2.jpg",
-    href: "/work/frost",
-    description: "3D immersive environment depicting a frozen wasteland with a secret entrance to an enchanted lake."
+    image: "/images/other/non-binary.jpg",
+    cursorText: "POSTER"
   },
   {
     title: "DiSoRiEnT",
     company: "Personal",
     status: "2021",
-    image: "/images/disorient/disorient-1.jpg",
-    href: "/work/disorient",
-    description: "An AR poster capturing the essence of Springvale suburb."
+    image: "/images/other/disorient-6.gif",
+    cursorText: "PUBLICATION"
   },
   {
-    title: "Miscellaneous Illustrations",
+    title: "DiSoRiEnT Video",
     company: "Personal",
-    status: "2020-2022",
-    image: "/images/illustrations/illo-2.jpg",
-    href: "/work/illustrations",
-    description: "A collection of illustrations and artworks."
+    status: "2021",
+    video: "/images/other/disorient-video.mov",
+    cursorText: "AR/VR"
+  },
+  {
+    title: "Frost",
+    company: "Personal",
+    status: "2021",
+    image: "/images/other/frost-2.jpg",
+    cursorText: "3D"
+  },
+  {
+    title: "In Your Hands",
+    company: "Personal",
+    status: "2022",
+    image: "/images/other/in-your-hands-1.gif",
+    cursorText: "ILLUSTRATION/PUBLICATION"
   }
 ];
 ---
@@ -71,7 +58,7 @@ const works = [
 
 <style>
   .works {
-    padding: var(--spacing-xl) 32px var(--spacing-2xl) 32px;
+    padding: var(--spacing-xl) var(--page-margin) var(--spacing-2xl) var(--page-margin);
   }
 
   .works-header {
@@ -89,20 +76,24 @@ const works = [
   }
 
   .works-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    columns: 3;
+    column-gap: 24px;
+  }
+
+  .works-grid :global(.project-card) {
+    break-inside: avoid;
+    margin-bottom: 24px;
   }
 
   @media (max-width: 1024px) {
     .works-grid {
-      grid-template-columns: repeat(2, 1fr);
+      columns: 2;
     }
   }
 
   @media (max-width: 640px) {
     .works-grid {
-      grid-template-columns: 1fr;
+      columns: 1;
     }
   }
 </style>

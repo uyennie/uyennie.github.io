@@ -9,14 +9,14 @@ const navItems = [
 <header class="header">
   <div class="header-inner">
     <div class="header-left">
-      <a href="/" class="logo pill">
-        <span class="globe">🌏</span>
-        <span>Uyen Dien</span>
+      <a href="/" class="logo">
+        <span class="name">UYEN DIEN</span>
+        <span class="title">DESIGNER + CREATIVE TECHNOLOGIST</span>
       </a>
     </div>
     <nav class="header-nav">
       {navItems.map((item) => (
-        <a href={item.href} class="pill">{item.label}</a>
+        <a href={item.href} class="nav-pill">{item.label}</a>
       ))}
     </nav>
   </div>
@@ -24,10 +24,9 @@ const navItems = [
 
 <style>
   .header {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 100;
-    padding: var(--spacing-md) 32px;
+    padding: var(--spacing-md) var(--page-margin);
     background: transparent;
   }
 
@@ -41,26 +40,65 @@ const navItems = [
   .header-left {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
   }
 
   .logo {
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--color-text);
   }
 
-  .globe {
-    font-size: 1.1rem;
+  .name {
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Consolas', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Consolas', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #999999;
   }
 
   .header-nav {
     display: flex;
-    gap: var(--spacing-xs);
+    gap: 0;
+  }
+
+  .nav-pill {
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    background: #15FC00;
+    padding: 8px 14px;
+    border-radius: 9999px;
+    transition: background 0.3s ease;
+  }
+
+  .nav-pill:hover {
+    background: #DADADA;
   }
 
   @media (max-width: 640px) {
     .header-inner {
       flex-direction: column;
       gap: var(--spacing-sm);
+    }
+
+    .logo {
+      flex-direction: column;
+      gap: 0.25rem;
     }
   }
 </style>

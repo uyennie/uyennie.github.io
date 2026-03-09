@@ -1,0 +1,73 @@
+---
+---
+
+<footer class="footer">
+  <div class="footer-main">
+    <p class="footer-left">2026. DESIGNED AND CODED WITH LOVE BY UYEN</p>
+    <div class="footer-right">
+      <a href="https://linkedin.com/in/uyendien" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:dienuyenh@gmail.com">Email</a>
+      <a href="https://github.com/uyennie" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+  <p class="acknowledgment">I acknowledge the Traditional Owners of the land on which I work and live, the Gadigal people of the Eora Nation. I pay my respect to their Elders, past and present, and remember that it always was and always will be Aboriginal land.</p>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg) var(--page-margin);
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Consolas', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--color-text-secondary);
+  }
+
+  .footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-left {
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 0;
+  }
+
+  .footer-right a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    background: #15FC00;
+    padding: 8px 14px;
+    border-radius: 9999px;
+    transition: background 0.3s ease;
+  }
+
+  .footer-right a:hover {
+    background: #DADADA;
+  }
+
+  .acknowledgment {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.4;
+    color: #999999;
+    max-width: 550px;
+    margin: 0;
+  }
+</style>

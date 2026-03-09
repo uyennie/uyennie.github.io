@@ -1,12 +1,11 @@
 ---
 const images = [
-  '/images/content/content-1.gif',
-  '/images/future-record/future-record-2.jpg',
-  '/images/scopri/11.jpg',
-  '/images/deus-ex-machina/deus-ex-1.jpg',
-  '/images/digital-self/digital-self-4.jpg',
-  '/images/frost/frost-2.jpg',
-  '/images/disorient/disorient-1.jpg',
+  '/images/trail/3d-scan.png',
+  '/images/trail/cctv.png',
+  '/images/trail/cd.png',
+  '/images/trail/uyen-dien.png',
+  '/images/trail/sparkle.gif',
+  '/images/trail/zine.png',
 ];
 ---
 
@@ -45,31 +44,30 @@ const images = [
   });
 
   function addImage(x, y) {
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('trail-image');
-    newDiv.style.backgroundImage = `url(${images[currentImageIndex]})`;
+    const img = document.createElement('img');
+    img.classList.add('trail-image');
+    img.src = images[currentImageIndex];
     currentImageIndex = (currentImageIndex + 1) % images.length;
 
     const randomOffsetX = Math.floor(Math.random() * 20) - 10;
     const randomOffsetY = Math.floor(Math.random() * 20) - 10;
     const randomRotation = Math.floor(Math.random() * 20) - 10;
     
-    newDiv.style.left = `${x - 100 + randomOffsetX}px`;
-    newDiv.style.top = `${y - 100 + randomOffsetY}px`;
-    newDiv.style.transform = `rotate(${randomRotation}deg)`;
-    newDiv.style.opacity = '0';
+    img.style.left = `${x - 100 + randomOffsetX}px`;
+    img.style.top = `${y - 100 + randomOffsetY}px`;
+    img.style.transform = `rotate(${randomRotation}deg)`;
     
-    container.appendChild(newDiv);
+    container.appendChild(img);
 
     // Trigger animation
     requestAnimationFrame(() => {
-      newDiv.classList.add('animate');
+      img.classList.add('animate');
     });
 
     // Remove after animation completes
     setTimeout(() => {
-      if (newDiv.parentNode) {
-        container.removeChild(newDiv);
+      if (img.parentNode) {
+        container.removeChild(img);
       }
     }, 1000);
   }
@@ -89,12 +87,11 @@ const images = [
 
   .image-trail-container :global(.trail-image) {
     position: absolute;
-    width: 200px;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 8px;
+    max-width: 200px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     pointer-events: none;
     opacity: 0;
   }

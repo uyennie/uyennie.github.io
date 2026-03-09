@@ -3,54 +3,92 @@ interface Props {
   title: string;
   company: string;
   status: string;
-  image: string;
-  href: string;
+  image?: string;
+  video?: string;
+  href?: string;
   description?: string;
   featured?: boolean;
+  cursorText?: string;
 }
 
-const { title, company, status, image, href, description, featured = false } = Astro.props;
+const { title, company, status, image, video, href, description, featured = false, cursorText = "VIEW PROJECT" } = Astro.props;
 ---
 
-<a href={href} class:list={["project-card", { featured }]}>
-  <div class="project-image">
-    <img src={image} alt={title} loading="lazy" />
-  </div>
-  <div class="project-info">
-    <div class="project-meta">
-      <span class="project-title">{title}</span>
-      <span class="project-company">{company}, {status}</span>
+{href ? (
+  <a href={href} class:list={["project-card", { featured }]} data-cursor-text={cursorText}>
+    <div class="project-image">
+      {video ? (
+        <video src={video} autoplay loop muted playsinline />
+      ) : (
+        <img src={image} alt={title} loading="lazy" />
+      )}
     </div>
-    {description && (
-      <p class="project-description">{description}</p>
-    )}
+    <div class="project-info">
+      <div class="project-meta">
+        <span class="project-title">{title}</span>
+        <span class="project-company">{company} · {status}</span>
+      </div>
+    </div>
+  </a>
+) : (
+  <div class:list={["project-card", { featured }]} data-cursor-text={cursorText}>
+    <div class="project-image">
+      {video ? (
+        <video src={video} autoplay loop muted playsinline />
+      ) : (
+        <img src={image} alt={title} loading="lazy" />
+      )}
+    </div>
+    <div class="project-info">
+      <div class="project-meta">
+        <span class="project-title">{title}</span>
+        <span class="project-company">{company} · {status}</span>
+      </div>
+    </div>
   </div>
-</a>
+)}
 
 <style>
   .project-card {
     display: block;
-    background: var(--color-surface);
+    background: transparent;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    border: 1px solid var(--color-border);
+    border: none;
     cursor: none;
   }
 
   .project-image {
-    aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: #ddd;
+    background: transparent;
   }
 
-  .project-image img {
+  .project-image img,
+  .project-image video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+
+  .project-image {
+    position: relative;
+  }
+
+  .project-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
 
   .project-info {
-    padding: var(--spacing-md);
+    padding: 0.75rem 0 0.5rem 0;
   }
 
   .project-meta {
@@ -63,23 +101,15 @@ const { title, company, status, image, href, description, featured = false } = A
 
   .project-title {
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .project-company {
-    font-size: 0.9rem;
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.8rem;
     color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
-  .project-description {
-    margin-top: var(--spacing-sm);
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    line-height: 1.5;
-  }
-
-  /* Featured card style - same title size for consistency */
-  .featured .project-image {
-    aspect-ratio: 4 / 3;
-  }
 </style>
