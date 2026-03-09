@@ -138,6 +138,18 @@ const projects = [
     margin: 0;
   }
 
+  @media (min-width: 1920px) {
+    .intro {
+      font-size: 3.5rem;
+    }
+  }
+
+  @media (min-width: 2400px) {
+    .intro {
+      font-size: 3.8rem;
+    }
+  }
+
   .name-hover {
     cursor: none;
   }
@@ -167,7 +179,7 @@ const projects = [
   }
 
   .exp-label {
-    color: #999999;
+    color: #888888;
   }
 
   .exp-text {
@@ -183,7 +195,7 @@ const projects = [
   }
 
   .exp-company:hover {
-    border-color: #999999;
+    border-color: #888888;
   }
 
   .exp-logo {
@@ -240,6 +252,10 @@ const projects = [
   }
 
   @media (max-width: 900px) {
+    .hero {
+      padding-top: 40px;
+    }
+
     .hero-grid {
       grid-template-columns: 1fr;
       gap: 40px;
