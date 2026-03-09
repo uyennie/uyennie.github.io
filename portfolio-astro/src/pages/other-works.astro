@@ -55,7 +55,7 @@ const works = [
 ---
 
 <BaseLayout title="Other Works — Uyen Dien">
-  <section class="works container">
+  <section class="works">
     <header class="works-header">
       <h1>Other Works</h1>
       <p>A collection of personal projects, experiments, and explorations.</p>
@@ -71,7 +71,7 @@ const works = [
 
 <style>
   .works {
-    padding: var(--spacing-xl) 0 var(--spacing-2xl);
+    padding: var(--spacing-xl) 32px var(--spacing-2xl) 32px;
   }
 
   .works-header {
@@ -90,11 +90,17 @@ const works = [
 
   .works-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    .works-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
     .works-grid {
       grid-template-columns: 1fr;
     }

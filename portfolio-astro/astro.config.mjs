@@ -3,5 +3,6 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   integrations: [mdx()],
-  site: 'https://uyen.world',
+  site: 'https://uyennie.github.io',
+  output: 'static',
 });
