@@ -1,0 +1,81 @@
+---
+interface Props {
+  role: string;
+  timeline: string;
+  team: string[];
+  skills: string[];
+}
+
+const { role, timeline, team, skills } = Astro.props;
+---
+
+<div class="project-meta-grid">
+  <div class="meta-item">
+    <span class="meta-label">Role</span>
+    <span class="meta-value">{role}</span>
+  </div>
+  <div class="meta-item">
+    <span class="meta-label">Timeline</span>
+    <span class="meta-value">{timeline}</span>
+  </div>
+  <div class="meta-item">
+    <span class="meta-label">Team</span>
+    <div class="meta-value">
+      {team.map((member) => <span class="team-member">{member}</span>)}
+    </div>
+  </div>
+  <div class="meta-item">
+    <span class="meta-label">Skills</span>
+    <div class="meta-value">
+      {skills.map((skill) => <span class="skill">{skill}</span>)}
+    </div>
+  </div>
+</div>
+
+<style>
+  .project-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin: var(--spacing-xl) 0;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .meta-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .meta-value {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .team-member,
+  .skill {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .project-meta-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .project-meta-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

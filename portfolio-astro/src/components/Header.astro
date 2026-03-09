@@ -1,0 +1,66 @@
+---
+const navItems = [
+  { label: 'About', href: '/about' },
+  { label: 'Other Works', href: '/other-works' },
+  { label: 'Resume', href: '/resume.pdf' },
+];
+---
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <a href="/" class="logo pill">
+        <span class="globe">🌏</span>
+        <span>Uyen Dien</span>
+      </a>
+    </div>
+    <nav class="header-nav">
+      {navItems.map((item) => (
+        <a href={item.href} class="pill">{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: var(--spacing-md) 32px;
+    background: transparent;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .logo {
+    font-weight: 500;
+  }
+
+  .globe {
+    font-size: 1.1rem;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  @media (max-width: 640px) {
+    .header-inner {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+  }
+</style>

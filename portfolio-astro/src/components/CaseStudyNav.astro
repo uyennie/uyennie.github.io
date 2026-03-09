@@ -1,0 +1,113 @@
+---
+interface Props {
+  sections: { id: string; label: string }[];
+}
+
+const { sections } = Astro.props;
+---
+
+<aside class="case-study-nav">
+  <a href="/" class="back-link">← Back</a>
+  <nav class="section-nav">
+    {sections.map((section) => (
+      <a href={`#${section.id}`} class="section-link" data-section={section.id}>{section.label}</a>
+    ))}
+  </nav>
+</aside>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        // Remove active from all links
+        document.querySelectorAll('.section-link').forEach((link) => {
+          link.classList.remove('active');
+        });
+        
+        // Add active to current section link
+        const activeLink = document.querySelector(`.section-link[data-section="${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections (h2 elements in the prose)
+  document.querySelectorAll('.prose h2[id]').forEach((section) => {
+    observer.observe(section);
+  });
+</script>
+
+<style>
+  .case-study-nav {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding-right: var(--spacing-xl);
+    height: fit-content;
+  }
+
+  .back-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  .section-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .section-link {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    padding: 0.25rem 0;
+    transition: color 0.2s;
+  }
+
+  .section-link:hover {
+    color: var(--color-text);
+  }
+
+  .section-link.active {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 1024px) {
+    .case-study-nav {
+      position: relative;
+      top: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding-right: 0;
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+  }
+</style>

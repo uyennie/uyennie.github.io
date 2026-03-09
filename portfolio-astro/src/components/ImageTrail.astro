@@ -1,0 +1,120 @@
+---
+const images = [
+  '/images/content/content-1.gif',
+  '/images/future-record/future-record-2.jpg',
+  '/images/scopri/11.jpg',
+  '/images/deus-ex-machina/deus-ex-1.jpg',
+  '/images/digital-self/digital-self-4.jpg',
+  '/images/frost/frost-2.jpg',
+  '/images/disorient/disorient-1.jpg',
+];
+---
+
+<div class="image-trail-container" id="image-trail-container"></div>
+
+<script define:vars={{ images }}>
+  const container = document.getElementById('image-trail-container');
+  let isDragging = false;
+  let lastX = 0;
+  let lastY = 0;
+  const distanceThreshold = 100;
+  let currentImageIndex = 0;
+
+  document.addEventListener('mousedown', function(event) {
+    isDragging = true;
+    lastX = event.clientX;
+    lastY = event.clientY;
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
+
+  document.addEventListener('mousemove', function(event) {
+    if (!isDragging) return;
+
+    const deltaX = event.clientX - lastX;
+    const deltaY = event.clientY - lastY;
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    if (distance >= distanceThreshold) {
+      addImage(event.clientX, event.clientY);
+      lastX = event.clientX;
+      lastY = event.clientY;
+    }
+  });
+
+  function addImage(x, y) {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('trail-image');
+    newDiv.style.backgroundImage = `url(${images[currentImageIndex]})`;
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+
+    const randomOffsetX = Math.floor(Math.random() * 20) - 10;
+    const randomOffsetY = Math.floor(Math.random() * 20) - 10;
+    const randomRotation = Math.floor(Math.random() * 20) - 10;
+    
+    newDiv.style.left = `${x - 100 + randomOffsetX}px`;
+    newDiv.style.top = `${y - 100 + randomOffsetY}px`;
+    newDiv.style.transform = `rotate(${randomRotation}deg)`;
+    newDiv.style.opacity = '0';
+    
+    container.appendChild(newDiv);
+
+    // Trigger animation
+    requestAnimationFrame(() => {
+      newDiv.classList.add('animate');
+    });
+
+    // Remove after animation completes
+    setTimeout(() => {
+      if (newDiv.parentNode) {
+        container.removeChild(newDiv);
+      }
+    }, 1000);
+  }
+</script>
+
+<style>
+  .image-trail-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    overflow: visible;
+  }
+
+  .image-trail-container :global(.trail-image) {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .image-trail-container :global(.trail-image.animate) {
+    animation: showThenFade 1s ease-out forwards;
+  }
+
+  @keyframes showThenFade {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const works = [
+  {
+    title: "Content Overload",
+    company: "Personal",
+    status: "2022",
+    image: "/images/content/content-1.gif",
+    href: "/work/content-overload",
+    description: "A microsite and immersive experience exploring information overload in social media spaces."
+  },
+  {
+    title: "Future Record",
+    company: "Personal",
+    status: "2022",
+    image: "/images/future-record/future-record-2.jpg",
+    href: "/work/future-record",
+    description: "Visualizing digital waste as 3D objects with size and mass."
+  },
+  {
+    title: "Deus Ex Machina",
+    company: "Personal",
+    status: "2022",
+    image: "/images/deus-ex-machina/deus-ex-1.jpg",
+    href: "/work/deus-ex-machina",
+    description: "A microsite reimagining relationships between reader, text, and author."
+  },
+  {
+    title: "Frost",
+    company: "Personal",
+    status: "2021",
+    image: "/images/frost/frost-2.jpg",
+    href: "/work/frost",
+    description: "3D immersive environment depicting a frozen wasteland with a secret entrance to an enchanted lake."
+  },
+  {
+    title: "DiSoRiEnT",
+    company: "Personal",
+    status: "2021",
+    image: "/images/disorient/disorient-1.jpg",
+    href: "/work/disorient",
+    description: "An AR poster capturing the essence of Springvale suburb."
+  },
+  {
+    title: "Miscellaneous Illustrations",
+    company: "Personal",
+    status: "2020-2022",
+    image: "/images/illustrations/illo-2.jpg",
+    href: "/work/illustrations",
+    description: "A collection of illustrations and artworks."
+  }
+];
+---
+
+<BaseLayout title="Other Works — Uyen Dien">
+  <section class="works container">
+    <header class="works-header">
+      <h1>Other Works</h1>
+      <p>A collection of personal projects, experiments, and explorations.</p>
+    </header>
+
+    <div class="works-grid">
+      {works.map((work) => (
+        <ProjectCard {...work} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .works {
+    padding: var(--spacing-xl) 0 var(--spacing-2xl);
+  }
+
+  .works-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .works-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .works-header p {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+  }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .works-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
