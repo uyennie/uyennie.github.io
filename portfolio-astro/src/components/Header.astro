@@ -14,13 +14,31 @@ const navItems = [
         <span class="title">DESIGNER + CREATIVE TECHNOLOGIST</span>
       </a>
     </div>
-    <nav class="header-nav">
+    <nav class="header-nav desktop-nav">
       {navItems.map((item) => (
         <a href={item.href} class="nav-pill">{item.label}</a>
       ))}
     </nav>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+      <span class="menu-icon"></span>
+    </button>
   </div>
+  <nav class="mobile-nav" id="mobile-nav">
+    {navItems.map((item) => (
+      <a href={item.href} class="nav-pill">{item.label}</a>
+    ))}
+  </nav>
 </header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  
+  menuToggle?.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    mobileNav?.classList.toggle('open');
+  });
+</script>
 
 <style>
   .header {
@@ -67,7 +85,7 @@ const navItems = [
     color: #888888;
   }
 
-  .header-nav {
+  .desktop-nav {
     display: flex;
     gap: 0;
   }
@@ -95,15 +113,88 @@ const navItems = [
     background: #DADADA;
   }
 
-  @media (max-width: 640px) {
-    .header-inner {
-      flex-direction: column;
-      gap: var(--spacing-sm);
+  .menu-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #15FC00;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .menu-toggle:hover {
+    background: #DADADA;
+  }
+
+  .menu-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 2px;
+    background: #484848;
+    transition: all 0.3s ease;
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 2px;
+    background: #484848;
+    transition: all 0.3s ease;
+  }
+
+  .menu-icon::before {
+    top: -5px;
+  }
+
+  .menu-icon::after {
+    top: 5px;
+  }
+
+  .menu-toggle.active .menu-icon {
+    background: transparent;
+  }
+
+  .menu-toggle.active .menu-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .menu-toggle.active .menu-icon::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: var(--spacing-md);
+  }
+
+  .mobile-nav.open {
+    display: flex;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none;
     }
 
-    .logo {
-      flex-direction: column;
-      gap: 0.25rem;
+    .menu-toggle {
+      display: block;
+    }
+
+    .title {
+      display: none;
     }
   }
 </style>
