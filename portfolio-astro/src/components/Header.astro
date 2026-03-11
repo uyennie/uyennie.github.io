@@ -174,14 +174,39 @@ const navItems = [
   }
 
   .mobile-nav {
-    display: none;
+    display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding-top: var(--spacing-md);
+    gap: 0;
+    padding: 0;
+    margin: 0 var(--page-margin) 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #15FC00;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   .mobile-nav.open {
-    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-nav .nav-pill {
+    background: transparent;
+    border-radius: 0;
+    padding: 14px 16px;
+    justify-content: flex-start;
+  }
+
+  .mobile-nav .nav-pill:hover {
+    background: #DADADA;
   }
 
   @media (max-width: 768px) {
