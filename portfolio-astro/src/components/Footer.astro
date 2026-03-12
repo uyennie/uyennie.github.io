@@ -70,4 +70,30 @@
     max-width: 550px;
     margin: 0;
   }
+
+  @media (max-width: 768px) {
+    .footer-main {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+    }
+
+    .footer-left {
+      font-size: 0.85rem;
+    }
+
+    .footer-right {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-right a {
+      font-size: 0.85rem;
+      padding: 8px 12px;
+    }
+
+    .acknowledgment {
+      max-width: 100%;
+    }
+  }
 </style>

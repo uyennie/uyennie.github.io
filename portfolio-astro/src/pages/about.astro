@@ -7,39 +7,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="about-grid">
       <div class="about-content">
         <h1>About</h1>
-        <p class="intro">
-          I'm Uyen Dien, a multidisciplinary designer currently based in Naarm (Melbourne, AUS).
+        <p>
+          I enjoy working with a range of projects including (but not limited to) web design, publications, illustrations and 3D technical art. My work often explores the intersection of technology, culture, and human experience.
         </p>
         <p>
-          I enjoy working with a range of projects including (but not limited to) web design, 
-          publications, illustrations and 3D technical art. My work often explores the intersection 
-          of technology, culture, and human experience.
+          I believe in design that is thoughtful, purposeful, and considers its broader impact on people and systems, which includes questioning how we adopt new tools. I'm interested in the value of friction in design processes, especially as AI tools promise to skip the messy and essential parts where thinking actually happens.
         </p>
         <p>
-          I believe in design that is thoughtful, purposeful, and considers its broader impact 
-          on people and systems.
+          I think deeply about web aesthetics, playful interactions, and making advanced tools accessible. Currently exploring AI-assisted workflows while staying critical of how they're being deployed. I'm still mulling over what it means to stay earnest in a world increasingly obsessed with empty virality.
+        </p>
+        <p>
+          Outside of design, code I'm:
+        </p>
+        <ul class="outside-list">
+          <li>collecting CDs and making zines</li>
+          <li>exploring risograph printing</li>
+          <li>getting tattooed or tattooing</li>
+          <li>thinking about critical design theory</li>
+          <li>hanging with cats</li>
+        </ul>
+        <p>
+          If you're building something interesting, let's talk!
         </p>
 
-        <div class="education">
-          <h2>Education</h2>
-          <p>
-            <strong>Monash University, 2023</strong><br />
-            → Bachelor of Communication Design<br />
-            → Bachelor of Information Technology
-          </p>
-        </div>
-
-        <div class="contact">
-          <h2>Get in Touch</h2>
-          <ul>
-            <li><a href="mailto:dienuyenh@gmail.com">dienuyenh@gmail.com</a></li>
-            <li><a href="https://www.instagram.com/uyen.world/" target="_blank">Instagram @uyen.world</a></li>
-            <li><a href="https://www.linkedin.com/in/uyendien/" target="_blank">LinkedIn</a></li>
-          </ul>
-        </div>
       </div>
-      <div class="about-image">
-        <img src="/images/about/me.jpg" alt="Uyen Dien" />
+      <div class="about-images" id="image-stack">
+        <img src="/images/about/me.jpg" alt="Uyen Dien" class="draggable-image" draggable="false" />
+        <img src="/images/about/cat.jpg" alt="Cat" class="draggable-image" draggable="false" />
+        <img src="/images/about/books.jpg" alt="Books" class="draggable-image" draggable="false" />
+        <img src="/images/about/tattoo.jpg" alt="Tattoo" class="draggable-image" draggable="false" />
+        <img src="/images/about/nz.jpg" alt="New Zealand" class="draggable-image" draggable="false" />
+        <img src="/images/about/sydney.JPG" alt="Sydney" class="draggable-image" draggable="false" />
       </div>
     </div>
   </section>
@@ -78,51 +76,85 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-text-secondary);
   }
 
-  .education,
-  .contact {
-    margin-top: var(--spacing-xl);
-  }
-
-  .education h2,
-  .contact h2 {
-    font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Consolas', monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .contact ul {
+  .outside-list {
     list-style: none;
     padding: 0;
+    margin-left: 2em;
+    margin-bottom: 1em;
   }
 
-  .contact li {
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .contact a {
-    color: var(--color-text);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .contact a:hover {
+  .outside-list li {
+    font-size: 1.05rem;
+    line-height: 1.7;
     color: var(--color-text-secondary);
+    padding-left: 1.5em;
+    position: relative;
   }
 
-  .about-image {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+  .outside-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
   }
 
-  .about-image img {
-    width: 60%;
+  .about-images {
+    position: relative;
+    width: 100%;
+    height: 500px;
+  }
+
+  .draggable-image {
+    position: absolute;
+    width: 200px;
     height: auto;
     border-radius: var(--radius-lg);
+    cursor: grab;
+    transition: box-shadow 0.2s ease;
+    user-select: none;
+  }
+
+  .draggable-image:active {
+    cursor: grabbing;
+  }
+
+  .draggable-image:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .draggable-image:nth-child(1) {
+    top: 0;
+    right: 20%;
+    transform: rotate(-3deg);
+  }
+
+  .draggable-image:nth-child(2) {
+    top: 60px;
+    right: 35%;
+    transform: rotate(5deg);
+  }
+
+  .draggable-image:nth-child(3) {
+    top: 120px;
+    right: 10%;
+    transform: rotate(-2deg);
+  }
+
+  .draggable-image:nth-child(4) {
+    top: 180px;
+    right: 25%;
+    transform: rotate(4deg);
+  }
+
+  .draggable-image:nth-child(5) {
+    top: 240px;
+    right: 40%;
+    transform: rotate(-5deg);
+  }
+
+  .draggable-image:nth-child(6) {
+    top: 300px;
+    right: 15%;
+    transform: rotate(3deg);
   }
 
   @media (max-width: 900px) {
@@ -130,13 +162,93 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       grid-template-columns: 1fr;
     }
 
-    .about-image {
-      justify-content: center;
-      order: -1;
+    .about-images {
+      order: 1;
+      position: relative;
+      height: auto;
+      columns: 2;
+      column-gap: 12px;
+      padding: var(--spacing-lg) 0;
     }
 
-    .about-image img {
-      width: 80%;
+    .draggable-image {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      transform: none;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      cursor: default;
+      border-radius: var(--radius-lg);
+      margin-bottom: 12px;
+      break-inside: avoid;
+    }
+
+    .draggable-image:active {
+      cursor: default;
+    }
+
+    .draggable-image:nth-child(1),
+    .draggable-image:nth-child(2),
+    .draggable-image:nth-child(3),
+    .draggable-image:nth-child(4),
+    .draggable-image:nth-child(5),
+    .draggable-image:nth-child(6) {
+      top: auto;
+      right: auto;
+      transform: none;
     }
   }
 </style>
+
+<script>
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  
+  if (!isMobile) {
+    const images = document.querySelectorAll('.draggable-image');
+    let highestZ = 10;
+
+    images.forEach((img) => {
+      let isDragging = false;
+      let startX: number, startY: number;
+      let initialX: number, initialY: number;
+
+      img.addEventListener('mousedown', (e: MouseEvent) => {
+        isDragging = true;
+        const imgEl = img as HTMLElement;
+        
+        highestZ++;
+        imgEl.style.zIndex = String(highestZ);
+        
+        startX = e.clientX;
+        startY = e.clientY;
+        
+        const rect = imgEl.getBoundingClientRect();
+        const parentRect = imgEl.parentElement!.getBoundingClientRect();
+        initialX = rect.left - parentRect.left;
+        initialY = rect.top - parentRect.top;
+        
+        imgEl.style.right = 'auto';
+        imgEl.style.left = `${initialX}px`;
+        imgEl.style.top = `${initialY}px`;
+      });
+
+      document.addEventListener('mousemove', (e: MouseEvent) => {
+        if (!isDragging) return;
+        
+        const imgEl = img as HTMLElement;
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        
+        imgEl.style.left = `${initialX + deltaX}px`;
+        imgEl.style.top = `${initialY + deltaY}px`;
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    });
+  }
+</script>
