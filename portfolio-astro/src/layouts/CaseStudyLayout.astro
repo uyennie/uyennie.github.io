@@ -149,6 +149,21 @@ const { frontmatter } = Astro.props;
     margin: var(--spacing-sm) 0;
   }
 
+  .prose :global(figure) {
+    margin: var(--spacing-sm) 0;
+  }
+
+  .prose :global(figure img) {
+    margin: 0;
+  }
+
+  .prose :global(figcaption) {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-xs);
+    font-style: italic;
+  }
+
   .prose :global(.image-row) {
     display: flex;
     align-items: flex-start;
@@ -163,6 +178,48 @@ const { frontmatter } = Astro.props;
     width: auto;
     object-fit: contain;
     border-radius: var(--radius-md);
+  }
+
+  .prose :global(.video-row-4) {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+  }
+
+  .prose :global(.video-row-4 video) {
+    flex: 1;
+    margin: 0;
+    border-radius: var(--radius-md);
+    width: 25%;
+    object-fit: cover;
+  }
+
+  .prose :global(.image-row-4) {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+  }
+
+  .prose :global(.image-row-4 img) {
+    flex: 1;
+    margin: 0;
+    border-radius: var(--radius-md);
+    width: 25%;
+    object-fit: cover;
+  }
+
+  .prose :global(.image-row-3) {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+  }
+
+  .prose :global(.image-row-3 img) {
+    flex: 1;
+    margin: 0;
+    border-radius: var(--radius-md);
+    width: 33.33%;
+    object-fit: cover;
   }
 
   .prose :global(.image-stack) {
