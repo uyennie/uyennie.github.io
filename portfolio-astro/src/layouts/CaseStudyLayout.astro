@@ -222,6 +222,23 @@ const { frontmatter } = Astro.props;
     object-fit: cover;
   }
 
+  .prose :global(.image-row-full) {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+    width: 100%;
+  }
+
+  .prose :global(.image-row-full img),
+  .prose :global(.image-row-full video) {
+    flex: 1;
+    margin: 0;
+    border-radius: var(--radius-md);
+    max-width: calc(50% - var(--spacing-sm) / 2);
+    height: auto;
+    object-fit: contain;
+  }
+
   .prose :global(.image-stack) {
     display: flex;
     flex-direction: column;
