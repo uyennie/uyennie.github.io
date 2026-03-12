@@ -37,7 +37,11 @@ const { frontmatter } = Astro.props;
         </header>
 
         <div class="hero-image">
-          <img src={frontmatter.heroImage} alt={frontmatter.title} />
+          {frontmatter.heroImage.endsWith('.mp4') || frontmatter.heroImage.endsWith('.mov') || frontmatter.heroImage.endsWith('.webm') ? (
+            <video src={frontmatter.heroImage} autoplay loop muted playsinline />
+          ) : (
+            <img src={frontmatter.heroImage} alt={frontmatter.title} />
+          )}
         </div>
 
         <ProjectMeta 
@@ -105,7 +109,8 @@ const { frontmatter } = Astro.props;
     margin-bottom: var(--spacing-lg);
   }
 
-  .hero-image img {
+  .hero-image img,
+  .hero-image video {
     width: 100%;
     height: auto;
   }
@@ -130,7 +135,7 @@ const { frontmatter } = Astro.props;
   .prose :global(h3) {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-sm);
   }
 
@@ -138,19 +143,60 @@ const { frontmatter } = Astro.props;
     margin-bottom: var(--spacing-md);
   }
 
-  .prose :global(img) {
+  .prose :global(img),
+  .prose :global(video) {
     border-radius: var(--radius-md);
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-sm) 0;
+  }
+
+  .prose :global(.image-row) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+  }
+
+  .prose :global(.image-row img),
+  .prose :global(.image-row video) {
+    margin: 0;
+    height: 300px;
+    width: auto;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+  }
+
+  .prose :global(.image-stack) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    flex: 1;
+  }
+
+  .prose :global(.image-stack img) {
+    margin: 0;
+    width: 100%;
   }
 
   .prose :global(ul),
   .prose :global(ol) {
     margin-bottom: var(--spacing-md);
-    padding-left: var(--spacing-md);
+    padding-left: var(--spacing-xl);
   }
 
   .prose :global(li) {
     margin-bottom: var(--spacing-xs);
+  }
+
+  .prose :global(.external-link) {
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 2px dotted transparent;
+    transition: border-color 0.3s ease;
+    padding-bottom: 2px;
+  }
+
+  .prose :global(.external-link:hover) {
+    border-color: #888888;
   }
 
   .prose :global(blockquote) {

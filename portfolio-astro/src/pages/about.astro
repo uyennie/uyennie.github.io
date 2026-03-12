@@ -105,7 +105,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .draggable-image {
     position: absolute;
-    width: 200px;
+    width: 300px;
     height: auto;
     border-radius: var(--radius-lg);
     cursor: grab;
@@ -172,11 +172,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
 
     .draggable-image {
-      position: relative;
-      top: auto;
-      left: auto;
-      right: auto;
-      transform: none;
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
       width: 100%;
       height: auto;
       object-fit: contain;
@@ -184,29 +184,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       border-radius: var(--radius-lg);
       margin-bottom: 12px;
       break-inside: avoid;
+      z-index: auto !important;
     }
 
     .draggable-image:active {
       cursor: default;
     }
-
-    .draggable-image:nth-child(1),
-    .draggable-image:nth-child(2),
-    .draggable-image:nth-child(3),
-    .draggable-image:nth-child(4),
-    .draggable-image:nth-child(5),
-    .draggable-image:nth-child(6) {
-      top: auto;
-      right: auto;
-      transform: none;
-    }
   }
 </style>
 
 <script>
-  const isMobile = window.matchMedia('(max-width: 900px)').matches;
-  
-  if (!isMobile) {
+  function initDraggable() {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (isMobile || isTouchDevice) return;
+
     const images = document.querySelectorAll('.draggable-image');
     let highestZ = 10;
 
@@ -251,4 +244,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
     });
   }
+
+  initDraggable();
 </script>
